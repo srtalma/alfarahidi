@@ -99,11 +99,23 @@ with open('arabic_text_processing.pkl', 'rb') as f:
     convert_to_phonetic_and_pattern = pickle.load(f)
 
 # Streamlit App Code
-st.title('Arabic Phonetic Converter and CV Pattern Generator')
+
+# Title and brief history about Al-Farahidi
+st.title('الخليل بن أحمد الفراهيدي - مؤسس علم العروض')
 
 # Display Al-Farahidi image
-st.image("alfarahidi.jpg.webp", caption="Al-Farahidi - Father of Arabic Prosody", use_column_width=True)
+st.image("alfarahidi.jpg.webp", caption="الخليل بن أحمد الفراهيدي", use_column_width=True)
 
+# Brief history in Arabic
+st.write("""
+### نبذة عن الخليل بن أحمد الفراهيدي:
+الخليل بن أحمد الفراهيدي (718 - 786 م) هو عالم لغوي وأديب عربي، يعدّ من أعظم علماء اللغة في تاريخ العرب. 
+اشتهر بتأسيس علم العروض الذي وضع أسسه لوزن الشعر العربي. 
+وقد ألف العديد من الكتب التي تتناول مواضيع لغوية وأدبية، وكان له دور كبير في تطوير قواعد اللغة العربية. 
+كما كان له فضل كبير في تدوين الشعر العربي وتصنيف بحوره، مما أثر بشكل كبير على الأدب العربي في العصور اللاحقة.
+""")
+
+# Arabic text input section
 st.write("""
 ### أدخل النص العربي:
 تقوم هذه الأداة بتطبيق القواعد اللغوية لتحويل النص العربي إلى كتابة صوتية وأنماط CV.
@@ -116,9 +128,9 @@ text = st.text_area("Arabic Text Input", "")
 if st.button('Convert'):
     if text:
         phonetic_output, pattern_output = convert_to_phonetic_and_pattern(text)
-        st.write("### Phonetic Writing:")
+        st.write("### الكتابة الصوتية:")
         st.write(phonetic_output)
-        st.write("### CV Pattern:")
+        st.write("### نمط CV:")
         st.write(pattern_output)
     else:
         st.error("يرجى إدخال نص للتحويل.")
